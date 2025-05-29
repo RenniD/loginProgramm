@@ -96,6 +96,21 @@ struct Account{
 		}
 	}
 
+	void BuySkyrim() {
+		int choice;
+
+		std::cout << "Do you want to buy The Elder ""Scrolls V: Skyrim Special Edition"" ? \n1.Yes\n2.No(buy Skirim anyways)";
+		std::cin >> choice;
+
+		if (balance >= 649) {
+			balance -= 649;
+			std::cout << "Thank you for purchasing ""Scrolls V: Skyrim Special Edition""";
+		}
+		else {
+			std::cout << "Kapec ti bomzh, idi groshi zaroblyay";
+		}
+	}
+
 	void LogIn(std::string mailcheck, std::string passwordcheck) {
 		
 		if (mailcheck == mail && passwordcheck == password) {
