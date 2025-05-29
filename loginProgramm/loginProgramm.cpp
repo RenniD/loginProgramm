@@ -58,6 +58,44 @@ struct Account{
 		}
 	}
 
+	bool IsValidPassword(std::string passcheck) {
+		int letters = 0;
+		int symbols = 0;
+		int digits = 0;
+		int upercase = 0;
+		int lowercase = 0;
+		int whitespace = 0;
+		
+		for (int index = 0; index < passcheck.size(); index++) {
+			if (isalpha(passcheck[index])) {
+				letters++;
+			}
+			if ((!isalnum(passcheck[index]) && !isspace(passcheck[index]))) {
+				symbols++;
+			}
+			if (isdigit(passcheck[index])) {
+				digits++;
+			}
+			if (isupper(passcheck[index])) {
+				upercase++;
+			}
+			if (islower(passcheck[index])) {
+				lowercase++;
+			}
+			if (isspace(passcheck[index])) {
+				whitespace++;
+			}
+		}
+		
+		if (letters < 7 || whitespace >= 0) {
+			std::cout << "the password does not fall under recomended guidelines. \nPlease try to modify it." << std::endl ;
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
 	void LogIn(std::string mailcheck, std::string passwordcheck) {
 		
 		if (mailcheck == mail && passwordcheck == password) {
