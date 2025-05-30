@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 // доступів два типи:           private         public
 struct Account{
 
@@ -31,31 +30,23 @@ struct Account{
 		int dotPos = 0;
 
 
-		for (int index = 0; index < mailcheck.size();) {
-			if (isalpha(mailcheck[0]) || isalpha(mailcheck[index])) {
-				index++;
+		for (int index = 0; index < mailcheck.size(); index++) {
+			if (isalpha(mailcheck[index]) || isdigit(mailcheck[index]) ) {  // ?
+                // "debilsim@gmail.com"
 			}
-			else if (isdigit(mailcheck[index])) {
-				index++;
-			}
-			else if (mailcheck[index] = '@' && at < 1) {
-				index++;
+			else if (mailcheck[index] == '@' && at < 1) {
 				at++;
-				atPos = mailcheck[index];
+				atPos = index;    // ?
 			}
-			else if (mailcheck[index] = '.' && dot < 1 && index > atPos && isalpha(mailcheck[index -= 1]) && isalpha(mailcheck[index += 1])) {
-				index++;
+			else if (mailcheck[index] == '.' && dot < 1 && index > atPos && isalpha(mailcheck[index - 1]) && isalpha(mailcheck[index + 1])) {
 				dot++;
-				dotPos = mailcheck[index];
+				dotPos = index;
 			}
 			else {
-				return false;
-			}
-
-			if (index == mailcheck.size()) {
-				return true;
+				return false;       
 			}
 		}
+        return true;
 	}
 
 	bool IsValidPassword(std::string passcheck) {
@@ -87,7 +78,7 @@ struct Account{
 			}
 		}
 		
-		if (letters < 7 || whitespace >= 0) {
+		if (letters < 7 || whitespace > 0) {
 			std::cout << "the password does not fall under recomended guidelines. \nPlease try to modify it." << std::endl ;
 			return false;
 		}
